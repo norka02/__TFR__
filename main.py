@@ -52,7 +52,7 @@ class AbstractCar:
 
     def draw_rotated_car(self, window):
         blit_rotate_center(
-            surf=window, image=self.image, topleft=(self.x_cord, self.y_cord), angle=self.angle
+            surf=window, image=self.image, top_left=(self.x_cord, self.y_cord), angle=self.angle
         )
 
 
@@ -76,11 +76,13 @@ class PlayerCar(AbstractCar):
             super().move()
 
 
-def draw(window, images: list, car_obj):
+def draw_static(window, images: list):
     window.fill((29, 130, 34))
     for image, position in images:
         window.blit(image, position)
 
+
+def draw_dynamic(window, car_obj):
     car_obj.draw_rotated_car(window)
     car_obj.control()
     pygame.display.update()
@@ -88,12 +90,13 @@ def draw(window, images: list, car_obj):
 
 car1 = PlayerCar(rotation_vel=2, start_pos_y=200, start_pos_x=200)
 run = True
-FPS = 60  # klatki na sekunde
+FPS = 120  # klatki na sekunde
 timer = pygame.time.Clock()  # tworzenie instancji zegara
 
 while run:
     timer.tick(FPS)
-    draw(gp.GAME_WINDOW, gp.IMAGES_AND_SIZES, car1)
+    draw_static(window=gp.GAME_WINDOW, images=gp.IMAGES_AND_SIZES)
+    draw_dynamic(window=gp.GAME_WINDOW, car_obj=car1)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
