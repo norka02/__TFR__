@@ -56,12 +56,16 @@ class AbstractCar:
         )
 
 
+class ComputerCar(AbstractCar):
+    pass
+
+
 class PlayerCar(AbstractCar):
     IMG = gp.CAR_IMG
 
     def __init__(self, rotation_vel, start_pos_x, start_pos_y):
         super().__init__(rotation_vel, start_pos_x, start_pos_y)
-
+        
     def control(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
