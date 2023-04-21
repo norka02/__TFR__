@@ -23,3 +23,5 @@ def blit_rotate_center(surf, image, top_left, angle):
     new_rect = rotated_image.get_rect(center=image.get_rect(topleft=top_left).center)
     # Rysuje obrócony obraz na powierzchni 'surf'
     surf.blit(rotated_image, new_rect)  # domyślnie topleft
+    return rotated_image #BADZIEW ALERT
+

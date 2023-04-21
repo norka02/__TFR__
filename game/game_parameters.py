@@ -13,6 +13,7 @@ class GameParameters:
     RACE_TRACK_BORDER = resize_img(pygame.image.load(RACE_TRACK_BORDER_PATH), 1.1)
     RACE_TRACK_IMG = resize_img(pygame.image.load(RACE_TRACK_PATH), 1.1)
     CAR_IMG = resize_img(pygame.image.load(CAR_PATH), 0.04)
+    RACE_TRACK_BORDER_MASK = pygame.mask.from_surface(RACE_TRACK_BORDER)
 
     WIDTH, HIGH = RACE_TRACK_IMG.get_width(), RACE_TRACK_IMG.get_height()
     GAME_WINDOW = pygame.display.set_mode((WIDTH, HIGH))

@@ -18,6 +18,14 @@ class AbstractCar:
     START_POS_X = 0  # zobaczę co będzie lepsze
     START_POS_Y = 0
 
+    def colision(self, track_mask, x=0, y=0):
+        offset = int(self.x_cord), int(self.y_cord)
+        car_mask = pygame.mask.from_surface(self.current_image)
+        collide = track_mask.overlap(car_mask, offset)
+        print(collide)
+        return collide
+
+
     def __init__(self, rotation_vel, start_pos_x, start_pos_y):
         self.x_cord = start_pos_x
         self.y_cord = start_pos_y
@@ -30,6 +38,7 @@ class AbstractCar:
         self.max_velocity = 2
         self.rotation_vel = rotation_vel
         self.angle = 84
+        self.current_image = None #BADZIEW ALERT
 
         """W takim układzie współrzędnych, kąt zero stopni odpowiada orientacji obiektu wzdłuż osi X,
          z "górą" obiektu skierowaną w górę ekranu (w kierunku przeciwnym do rosnącej wartości na osi Y)."""
@@ -51,7 +60,7 @@ class AbstractCar:
         self.y_cord -= y_move
 
     def draw_rotated_car(self, window):
-        blit_rotate_center(
+        self.current_image = blit_rotate_center(                 #BADZIEW ALERT
             surf=window, image=self.image, top_left=(self.x_cord, self.y_cord), angle=self.angle
         )
 
@@ -85,6 +94,7 @@ def draw_static(window, images: list):
 def draw_dynamic(window, car_obj):
     car_obj.draw_rotated_car(window)
     car_obj.control()
+    car_obj.colision(gp.RACE_TRACK_BORDER_MASK)
     pygame.display.update()
 
 
@@ -92,6 +102,7 @@ car1 = PlayerCar(rotation_vel=2, start_pos_y=200, start_pos_x=200)
 run = True
 FPS = 120  # klatki na sekunde
 timer = pygame.time.Clock()  # tworzenie instancji zegara
+
 
 while run:
     timer.tick(FPS)
