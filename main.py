@@ -9,6 +9,8 @@ from game.game_parameters import GameParameters as gp
 pygame.init()
 
 """Modulacja z funkcjami pygame -> dużo miesza bo razem z załadowaniem obrazka długi ciąg się robi"""
+
+
 # RACE_TRACK_IMG = pygame.transform.scale_by(RACE_TRACK_IMG, 1.1)
 # CAR_IMG = pygame.transform.scale_by(CAR_IMG, 2.0)
 
@@ -25,7 +27,6 @@ class AbstractCar:
         print(collide)
         return collide
 
-
     def __init__(self, rotation_vel, start_pos_x, start_pos_y):
         self.x_cord = start_pos_x
         self.y_cord = start_pos_y
@@ -38,7 +39,7 @@ class AbstractCar:
         self.max_velocity = 2
         self.rotation_vel = rotation_vel
         self.angle = 84
-        self.current_image = None #BADZIEW ALERT
+        self.current_image = None  # BADZIEW ALERT
 
         """W takim układzie współrzędnych, kąt zero stopni odpowiada orientacji obiektu wzdłuż osi X,
          z "górą" obiektu skierowaną w górę ekranu (w kierunku przeciwnym do rosnącej wartości na osi Y)."""
@@ -60,7 +61,7 @@ class AbstractCar:
         self.y_cord -= y_move
 
     def draw_rotated_car(self, window):
-        self.current_image = blit_rotate_center(                 #BADZIEW ALERT
+        self.current_image = blit_rotate_center(  # BADZIEW ALERT
             surf=window, image=self.image, top_left=(self.x_cord, self.y_cord), angle=self.angle
         )
 
@@ -74,7 +75,7 @@ class PlayerCar(AbstractCar):
 
     def __init__(self, rotation_vel, start_pos_x, start_pos_y):
         super().__init__(rotation_vel, start_pos_x, start_pos_y)
-        
+
     def control(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
@@ -102,7 +103,6 @@ car1 = PlayerCar(rotation_vel=2, start_pos_y=200, start_pos_x=200)
 run = True
 FPS = 120  # klatki na sekunde
 timer = pygame.time.Clock()  # tworzenie instancji zegara
-
 
 while run:
     timer.tick(FPS)
