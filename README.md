@@ -15,3 +15,6 @@ We intend to create an interface that will show the operation of the heuristic a
 
 ## Created things over time: <br />
 17.04 - so far we have made a prototype of the first track and the movement of the car <br />
+21.04 - colission detection <br />
+22.04 - prototype of the menu <br />
+06.05 - refractor the code and add finish line functionality <br /> 
