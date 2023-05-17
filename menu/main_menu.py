@@ -8,7 +8,7 @@ from game_main import Game
 
 class MainMenu:
     pygame.init()
-    FPS = 60
+    FPS = 10
 
     def __init__(self):
         self.WIDTH = 1400
